@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador — EF SET</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">🎯 EF SET Agenda</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="agenda.html" class="nav-link">Agenda</a>
+        <a href="flashcards.html" class="nav-link">Flashcards</a>
+        <a href="templates.html" class="nav-link">Templates</a>
+        <a href="simulador.html" class="nav-link active">Simulador</a>
+        <a href="speaking.html" class="nav-link">Speaking</a>
+        <a href="dicas.html" class="nav-link">Dicas</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="hero" style="padding:20px 16px;">
+      <h1>📊 Simulador de Nota</h1>
+      <p>Ajuste as notas esperadas em cada seção e veja se Wellington supera o João!</p>
+    </div>
+
+    <div class="card">
+      <div style="margin-bottom:20px;">
+        <div class="sim-row">
+          <div class="sim-label">Speaking</div>
+          <input type="range" class="sim-slider" id="s-speaking" min="0" max="100" value="40" oninput="updateSim()">
+          <div class="sim-val" id="v-speaking">40</div>
+        </div>
+        <div class="sim-row">
+          <div class="sim-label">Writing</div>
+          <input type="range" class="sim-slider" id="s-writing" min="0" max="100" value="35" oninput="updateSim()">
+          <div class="sim-val" id="v-writing">35</div>
+        </div>
+        <div class="sim-row">
+          <div class="sim-label">Listening</div>
+          <input type="range" class="sim-slider" id="s-listening" min="0" max="100" value="40" oninput="updateSim()">
+          <div class="sim-val" id="v-listening">40</div>
+        </div>
+        <div class="sim-row">
+          <div class="sim-label">Reading</div>
+          <input type="range" class="sim-slider" id="s-reading" min="0" max="100" value="40" oninput="updateSim()">
+          <div class="sim-val" id="v-reading">40</div>
+        </div>
+      </div>
+
+      <div class="sim-result lose" id="sim-result">
+        <div class="res-label">Nota geral estimada</div>
+        <div class="res-score" id="res-score">38.8</div>
+        <div class="res-level" id="res-level">A2 Elementary — ainda não passa do João (47)</div>
+        <div style="margin-top:10px;font-size:13px;color:var(--text-tertiary);">
+          Meta: <strong>48+</strong> | João: <strong>47</strong>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;font-size:13px;color:var(--text-tertiary);text-align:center;">
+        💡 Dica: suba <strong>Writing</strong> e <strong>Listening</strong> primeiro — são os gaps mais fáceis de fechar!
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">📈 Notas atuais</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;">
+        <div>
+          <div style="font-size:13px;color:var(--text-tertiary);margin-bottom:8px;font-weight:600;">Wellington (atual)</div>
+          <div style="margin-bottom:6px;font-size:13px;"><span style="display:inline-block;width:70px;color:var(--text-tertiary);">Speaking</span><strong>33</strong> (A2)</div>
+          <div style="margin-bottom:6px;font-size:13px;"><span style="display:inline-block;width:70px;color:var(--text-tertiary);">Writing</span><strong>22</strong> (A1)</div>
+          <div style="margin-bottom:6px;font-size:13px;"><span style="display:inline-block;width:70px;color:var(--text-tertiary);">Listening</span><strong>26</strong> (A1)</div>
+          <div style="margin-bottom:6px;font-size:13px;"><span style="display:inline-block;width:70px;color:var(--text-tertiary);">Reading</span><strong>31</strong> (A2)</div>
+          <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);font-size:14px;font-weight:600;"><span style="display:inline-block;width:70px;color:var(--text-tertiary);">Geral</span><span style="color:var(--accent-red)">28</span> (A1)</div>
+        </div>
+        <div>
+          <div style="font-size:13px;color:var(--text-tertiary);margin-bottom:8px;font-weight:600;">João (rival)</div>
+          <div style="margin-bottom:6px;font-size:13px;"><span style="display:inline-block;width:70px;color:var(--text-tertiary);">Speaking</span><strong>56</strong> (B2)</div>
+          <div style="margin-bottom:6px;font-size:13px;"><span style="display:inline-block;width:70px;color:var(--text-tertiary);">Writing</span><strong>16</strong> (A0)</div>
+          <div style="margin-bottom:6px;font-size:13px;"><span style="display:inline-block;width:70px;color:var(--text-tertiary);">Listening</span><strong>54</strong> (B2)</div>
+          <div style="margin-bottom:6px;font-size:13px;"><span style="display:inline-block;width:70px;color:var(--text-tertiary);">Reading</span><strong>63</strong> (C1)</div>
+          <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);font-size:14px;font-weight:600;"><span style="display:inline-block;width:70px;color:var(--text-tertiary);">Geral</span><span style="color:var(--accent-blue)">47</span> (B1)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Feito com 💪 para o Wellington passar do João e ir pro intercâmbio!
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

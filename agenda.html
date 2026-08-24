@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda — 28 Dias EF SET</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">🎯 EF SET Agenda</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="agenda.html" class="nav-link active">Agenda</a>
+        <a href="flashcards.html" class="nav-link">Flashcards</a>
+        <a href="templates.html" class="nav-link">Templates</a>
+        <a href="simulador.html" class="nav-link">Simulador</a>
+        <a href="speaking.html" class="nav-link">Speaking</a>
+        <a href="dicas.html" class="nav-link">Dicas</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="hero" style="padding:20px 16px;">
+      <h1>📅 Agenda de Estudos</h1>
+      <p>28 dias para superar o João. Marque as tarefas conforme for completando!</p>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>Progresso geral</span>
+        <span id="progress-text">0%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <div class="week-tabs">
+      <button class="week-tab active" onclick="switchWeek(0)">Semana 1</button>
+      <button class="week-tab" onclick="switchWeek(1)">Semana 2</button>
+      <button class="week-tab" onclick="switchWeek(2)">Semana 3</button>
+      <button class="week-tab" onclick="switchWeek(3)">Semana 4</button>
+    </div>
+
+    <!-- SEMANA 1 -->
+    <div class="week-panel active" id="week-0">
+      <div class="card"><div class="card-header"><span class="card-title">Dia 1 — Segunda</span><span class="card-badge">~2h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Listening: 6 Minute English<span class="tag tag-listening">Listening</span></div><div class="task-desc">Ouça 2 episódios. Anote 5 palavras novas.</div><a class="task-link" href="https://www.bbc.co.uk/learningenglish/english/features/6-minute-english" target="_blank">🔗 BBC 6 Minute English</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Writing: Email de apresentação<span class="tag tag-writing">Writing</span></div><div class="task-desc">100-150 palavras. Dear, I am, Best regards.</div><a class="task-link" href="https://writeandimprove.com" target="_blank">🔗 Write & Improve</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Reading: News in Levels<span class="tag tag-reading">Reading</span></div><div class="task-desc">2 notícias Level 1. Responda as perguntas.</div><a class="task-link" href="https://www.newsinlevels.com" target="_blank">🔗 News in Levels</a></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 2 — Terça</span><span class="card-badge">~2h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Listening: Elllo Level 1-2<span class="tag tag-listening">Listening</span></div><div class="task-desc">3 áudios curtos. Pause e repita frases.</div><a class="task-link" href="https://elllo.org/english/level1.htm" target="_blank">🔗 Elllo Level 1</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Writing: Descrição de rotina<span class="tag tag-writing">Writing</span></div><div class="task-desc">120 palavras. Present simple: I wake up, I go to...</div><a class="task-link" href="https://writeandimprove.com" target="_blank">🔗 Write & Improve</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Speaking: 5 perguntas básicas<span class="tag tag-speaking">Speaking</span></div><div class="task-desc">Grave-se respondendo. Nome, cidade, trabalho, hobbies.</div><a class="task-link" href="https://www.speakpipe.com/voice-recorder" target="_blank">🔗 SpeakPipe</a></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 3 — Quarta</span><span class="card-badge">~2h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Listening: English with Lucy<span class="tag tag-listening">Listening</span></div><div class="task-desc">1 vídeo com legenda em inglês. Anote expressões.</div><a class="task-link" href="https://www.youtube.com/@EnglishwithLucy" target="_blank">🔗 English with Lucy</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Writing: Email formal<span class="tag tag-writing">Writing</span></div><div class="task-desc">Pedi info sobre curso. I would like to know, Could you please...</div><a class="task-link" href="https://writeandimprove.com" target="_blank">🔗 Write & Improve</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Reading: News in Levels + flashcards<span class="tag tag-reading">Reading</span></div><div class="task-desc">2 notícias. Crie flashcards com 10 palavras novas.</div><a class="task-link" href="https://www.newsinlevels.com" target="_blank">🔗 News in Levels</a></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 4 — Quinta</span><span class="card-badge">~2h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Listening: Dictation drill<span class="tag tag-listening">Listening</span></div><div class="task-desc">Ouça, pause, escreva. Compare com transcrição.</div><a class="task-link" href="https://elllo.org/english/level1.htm" target="_blank">🔗 Elllo</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Writing: Formulário + lista<span class="tag tag-writing">Writing</span></div><div class="task-desc">Preencha dados pessoais e faça to-do list de 5 itens.</div><a class="task-link" href="https://writeandimprove.com" target="_blank">🔗 Write & Improve</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Speaking: Simulação de turista<span class="tag tag-speaking">Speaking</span></div><div class="task-desc">Peça direções, faça pedido, pergunte preços.</div><a class="task-link" href="https://www.speakpipe.com/voice-recorder" target="_blank">🔗 SpeakPipe</a></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 5 — Sexta</span><span class="card-badge">~2.5h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Listening: BBC 6 Minute English<span class="tag tag-listening">Listening</span></div><div class="task-desc">2 episódios. Foque no tema geral.</div><a class="task-link" href="https://www.bbc.co.uk/learningenglish/english/features/6-minute-english" target="_blank">🔗 BBC 6 Minute English</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Writing: Descrição de imagem<span class="tag tag-writing">Writing</span></div><div class="task-desc">3 fotos do Google. 3-4 frases cada. There is, I can see...</div><a class="task-link" href="https://writeandimprove.com" target="_blank">🔗 Write & Improve</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Reading: Breaking News English<span class="tag tag-reading">Reading</span></div><div class="task-desc">1 notícia nível 0/1. Faça o quiz de múltipla escolha.</div><a class="task-link" href="https://www.breakingnewsenglish.com/easy-english-news.html" target="_blank">🔗 Breaking News English</a></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 6 — Sábado</span><span class="card-badge">~3h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Review: Vocabulário da semana<span class="tag tag-reading">Review</span></div><div class="task-desc">Revise todas as palavras anotadas. Teste-se sozinho.</div></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Speaking: Gravação livre 3 min<span class="tag tag-speaking">Speaking</span></div><div class="task-desc">Fale sobre o intercâmbio. Não pare! Fluência > perfeição.</div><a class="task-link" href="https://www.speakpipe.com/voice-recorder" target="_blank">🔗 SpeakPipe</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Writing: Redação livre<span class="tag tag-writing">Writing</span></div><div class="task-desc">"My dream trip" — 150 palavras. Use will, would like to, hope.</div><a class="task-link" href="https://writeandimprove.com" target="_blank">🔗 Write & Improve</a></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 7 — Domingo</span><span class="card-badge">~1h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Descanso ativo: Filme/série<span class="tag tag-rest">Descanso</span></div><div class="task-desc">1 episódio com LEGENDA EM INGLÊS. Só absorva.</div></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Revisão: Erros comuns<span class="tag tag-writing">Review</span></div><div class="task-desc">Releia textos da semana. Corrija erros do Write & Improve.</div><a class="task-link" href="https://writeandimprove.com" target="_blank">🔗 Write & Improve</a></div></div>
+      </div>
+    </div>
+
+    <!-- SEMANA 2 -->
+    <div class="week-panel" id="week-1">
+      <div class="card"><div class="card-header"><span class="card-title">Dia 8 — Segunda</span><span class="card-badge">~2.5h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Listening: EngVid — Grammar<span class="tag tag-listening">Listening</span></div><div class="task-desc">2 aulas de gramática básica. Anote as regras.</div><a class="task-link" href="https://www.engvid.com" target="_blank">🔗 EngVid</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Writing: Email de reclamação<span class="tag tag-writing">Writing</span></div><div class="task-desc">I am writing to complain, I would like a refund.</div><a class="task-link" href="https://writeandimprove.com" target="_blank">🔗 Write & Improve</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Reading: News in Levels Level 2<span class="tag tag-reading">Reading</span></div><div class="task-desc">1 notícia Level 2. Use contexto se não entender tudo.</div><a class="task-link" href="https://www.newsinlevels.com" target="_blank">🔗 News in Levels</a></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 9 — Terça</span><span class="card-badge">~2.5h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Listening: Elllo Level 2-3<span class="tag tag-listening">Listening</span></div><div class="task-desc">Áudios mais difíceis. Foque no contexto geral.</div><a class="task-link" href="https://elllo.org/english/level2.htm" target="_blank">🔗 Elllo Level 2</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Writing: Preenchimento de formulário<span class="tag tag-writing">Writing</span></div><div class="task-desc">Forms de hotel, voo, inscrição. Dados fictícios.</div><a class="task-link" href="https://writeandimprove.com" target="_blank">🔗 Write & Improve</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Speaking: 10 perguntas EF SET<span class="tag tag-speaking">Speaking</span></div><div class="task-desc">Responda cada uma por 30+ segundos. Sem parar.</div><a class="task-link" href="https://www.speakpipe.com/voice-recorder" target="_blank">🔗 SpeakPipe</a></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 10 — Quarta</span><span class="card-badge">~2.5h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Listening: English with Lucy — phrasal verbs<span class="tag tag-listening">Listening</span></div><div class="task-desc">Anote 10 phrasal verbs comuns.</div><a class="task-link" href="https://www.youtube.com/@EnglishwithLucy" target="_blank">🔗 English with Lucy</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Writing: Descrição de problema<span class="tag tag-writing">Writing</span></div><div class="task-desc">Past simple e past continuous. Como resolveu?</div><a class="task-link" href="https://writeandimprove.com" target="_blank">🔗 Write & Improve</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Reading: Breaking News English + quiz<span class="tag tag-reading">Reading</span></div><div class="task-desc">2 notícias nível 1. Quizzes de V/F e múltipla escolha.</div><a class="task-link" href="https://www.breakingnewsenglish.com/easy-english-news.html" target="_blank">🔗 Breaking News English</a></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 11 — Quinta</span><span class="card-badge">~2.5h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Listening: Dictation avançado<span class="tag tag-listening">Listening</span></div><div class="task-desc">Dictation com BBC 6 Minute English. Escreva tudo.</div><a class="task-link" href="https://www.bbc.co.uk/learningenglish/english/features/6-minute-english" target="_blank">🔗 BBC 6 Minute English</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Writing: Email de confirmação<span class="tag tag-writing">Writing</span></div><div class="task-desc">Confirme reserva de hotel. I would like to confirm...</div><a class="task-link" href="https://writeandimprove.com" target="_blank">🔗 Write & Improve</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Speaking: Narração de história<span class="tag tag-speaking">Speaking</span></div><div class="task-desc">Conte uma história do passado. One day, suddenly, in the end.</div><a class="task-link" href="https://www.speakpipe.com/voice-recorder" target="_blank">🔗 SpeakPipe</a></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 12 — Sexta</span><span class="card-badge">~2.5h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Listening: BBC sem pausar<span class="tag tag-listening">Listening</span></div><div class="task-desc">1 episódio completo. Depois ouça de novo e anote tema + 3 detalhes.</div><a class="task-link" href="https://www.bbc.co.uk/learningenglish/english/features/6-minute-english" target="_blank">🔗 BBC 6 Minute English</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Writing: Comparação de opções<span class="tag tag-writing">Writing</span></div><div class="task-desc">Cidade A vs B. better than, more expensive, I prefer.</div><a class="task-link" href="https://writeandimprove.com" target="_blank">🔗 Write & Improve</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Reading: News in Levels + resumo<span class="tag tag-reading">Reading</span></div><div class="task-desc">1 notícia + resumo de 3 frases. Pratique scanning.</div><a class="task-link" href="https://www.newsinlevels.com" target="_blank">🔗 News in Levels</a></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 13 — Sábado</span><span class="card-badge">~3h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Review: Gramática da semana<span class="tag tag-reading">Review</span></div><div class="task-desc">Regras dos vídeos do EngVid. Exercícios mentais.</div><a class="task-link" href="https://www.engvid.com" target="_blank">🔗 EngVid</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Speaking: Simulação EF SET completa<span class="tag tag-speaking">Speaking</span></div><div class="task-desc">Responda todas as perguntas sem parar. Grave tudo.</div><a class="task-link" href="https://www.speakpipe.com/voice-recorder" target="_blank">🔗 SpeakPipe</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Writing: Redação com timer<span class="tag tag-writing">Writing</span></div><div class="task-desc">"The importance of learning English" — 10 min, 150 palavras.</div><a class="task-link" href="https://writeandimprove.com" target="_blank">🔗 Write & Improve</a></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 14 — Domingo</span><span class="card-badge">~1h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Descanso ativo: Música em inglês<span class="tag tag-rest">Descanso</span></div><div class="task-desc">Ouça e leia a letra. Tente cantar junto. Sem pressão!</div></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Revisão: Vocabulário semanal<span class="tag tag-reading">Review</span></div><div class="task-desc">Teste-se com palavras das 2 semanas. Flashcards.</div></div></div>
+      </div>
+    </div>
+
+    <!-- SEMANA 3 -->
+    <div class="week-panel" id="week-2">
+      <div class="card"><div class="card-header"><span class="card-title">Dia 15 — Segunda</span><span class="card-badge">~3h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">🎯 MOCK TEST: EF SET completo #1<span class="tag tag-mock">SIMULADO</span></div><div class="task-desc">Faça o EF SET INTEIRO. Anote nota de cada seção. Sem dicionário!</div><a class="task-link" href="https://www.efset.org" target="_blank">🔗 EF SET (simulado)</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Análise de erros<span class="tag tag-reading">Review</span></div><div class="task-desc">Entenda POR QUE errou. Foque na seção mais fraca.</div></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 16 — Terça</span><span class="card-badge">~2.5h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Listening intensivo: Elllo + dictation<span class="tag tag-listening">Listening</span></div><div class="task-desc">Se Listening foi fraco no mock, 1h de dictation hoje.</div><a class="task-link" href="https://elllo.org" target="_blank">🔗 Elllo</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Writing intensivo: 3 textos com timer<span class="tag tag-writing">Writing</span></div><div class="task-desc">3 textos de 10 min cada. Estrutura > vocabulário chique.</div><a class="task-link" href="https://writeandimprove.com" target="_blank">🔗 Write & Improve</a></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 17 — Quarta</span><span class="card-badge">~2.5h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Listening: BBC sem legenda<span class="tag tag-listening">Listening</span></div><div class="task-desc">Desafio: ouça SEM legenda. Depois com legenda e compare.</div><a class="task-link" href="https://www.bbc.co.uk/learningenglish/english/features/6-minute-english" target="_blank">🔗 BBC 6 Minute English</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Writing: Email de agradecimento<span class="tag tag-writing">Writing</span></div><div class="task-desc">Thank you for, I really enjoyed, I hope to.</div><a class="task-link" href="https://writeandimprove.com" target="_blank">🔗 Write & Improve</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Reading: Breaking News English nível 2<span class="tag tag-reading">Reading</span></div><div class="task-desc">1 notícia nível 2. Dicionário SÓ se travar completamente.</div><a class="task-link" href="https://www.breakingnewsenglish.com/easy-english-news.html" target="_blank">🔗 Breaking News English</a></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 18 — Quinta</span><span class="card-badge">~2.5h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Listening: English with Lucy — tips<span class="tag tag-listening">Listening</span></div><div class="task-desc">Vídeo sobre listening tips. Aplique no próximo exercício.</div><a class="task-link" href="https://www.youtube.com/@EnglishwithLucy" target="_blank">🔗 English with Lucy</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Writing: Opinião sobre tema atual<span class="tag tag-writing">Writing</span></div><div class="task-desc">"Technology is good/bad for society" — 150 palavras. In my opinion, I believe.</div><a class="task-link" href="https://writeandimprove.com" target="_blank">🔗 Write & Improve</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Speaking: Debate consigo mesmo<span class="tag tag-speaking">Speaking</span></div><div class="task-desc">Escolha um tema. Defenda um lado por 1 min, depois o outro.</div><a class="task-link" href="https://www.speakpipe.com/voice-recorder" target="_blank">🔗 SpeakPipe</a></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 19 — Sexta</span><span class="card-badge">~2.5h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Listening: Elllo — entrevistas<span class="tag tag-listening">Listening</span></div><div class="task-desc">Ouça entrevistas curtas. Anote 3 fatos sobre cada pessoa.</div><a class="task-link" href="https://elllo.org" target="_blank">🔗 Elllo</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Writing: Descrição de pessoa<span class="tag tag-writing">Writing</span></div><div class="task-desc">Descreva um amigo/família. Use: He/She is, looks like, personality.</div><a class="task-link" href="https://writeandimprove.com" target="_blank">🔗 Write & Improve</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Reading: News in Levels + comparação<span class="tag tag-reading">Reading</span></div><div class="task-desc">Leia mesma notícia em Level 1 e 2. Compare vocabulário.</div><a class="task-link" href="https://www.newsinlevels.com" target="_blank">🔗 News in Levels</a></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 20 — Sábado</span><span class="card-badge">~3h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">🎯 MOCK TEST: EF SET completo #2<span class="tag tag-mock">SIMULADO</span></div><div class="task-desc">Faça de novo! Compare com o mock #1. Melhorou?</div><a class="task-link" href="https://www.efset.org" target="_blank">🔗 EF SET (simulado)</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Análise comparativa<span class="tag tag-reading">Review</span></div><div class="task-desc">Compare as 2 notas. Onde melhorou? Onde ainda precisa?</div></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 21 — Domingo</span><span class="card-badge">~1.5h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Descanso ativo: Podcast em inglês<span class="tag tag-rest">Descanso</span></div><div class="task-desc">Ouça 1 episódio de podcast leve. Só escute, não force.</div><a class="task-link" href="https://www.bbc.co.uk/learningenglish/english/features/6-minute-english" target="_blank">🔗 BBC 6 Minute English</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Revisão: Erros recorrentes<span class="tag tag-writing">Review</span></div><div class="task-desc">Liste os 5 erros que mais comete. Pratique corrigí-los.</div></div></div>
+      </div>
+    </div>
+
+    <!-- SEMANA 4 -->
+    <div class="week-panel" id="week-3">
+      <div class="card"><div class="card-header"><span class="card-title">Dia 22 — Segunda</span><span class="card-badge">~2.5h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Listening: Revisão de todos os áudios<span class="tag tag-listening">Listening</span></div><div class="task-desc">Ouça novamente os áudios que mais errou. Agora entende?</div><a class="task-link" href="https://elllo.org" target="_blank">🔗 Elllo</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Writing: Revisão de todos os textos<span class="tag tag-writing">Writing</span></div><div class="task-desc">Releia seus melhores textos. Memorize as estruturas que funcionaram.</div><a class="task-link" href="https://writeandimprove.com" target="_blank">🔗 Write & Improve</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Reading: Última leitura intensiva<span class="tag tag-reading">Reading</span></div><div class="task-desc">2 notícias nível 1. Foque em velocidade de leitura.</div><a class="task-link" href="https://www.newsinlevels.com" target="_blank">🔗 News in Levels</a></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 23 — Terça</span><span class="card-badge">~2.5h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Listening: Último dictation<span class="tag tag-listening">Listening</span></div><div class="task-desc">1 áudio do BBC. Escreva tudo. Compare. Quase 100%?</div><a class="task-link" href="https://www.bbc.co.uk/learningenglish/english/features/6-minute-english" target="_blank">🔗 BBC 6 Minute English</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Writing: Email de despedida<span class="tag tag-writing">Writing</span></div><div class="task-desc">Diga adeus a um amigo que vai viajar. Use: I will miss you, Keep in touch.</div><a class="task-link" href="https://writeandimprove.com" target="_blank">🔗 Write & Improve</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Speaking: Última gravação completa<span class="tag tag-speaking">Speaking</span></div><div class="task-desc">Simule TODA a seção Speaking. Fale claro e pausado.</div><a class="task-link" href="https://www.speakpipe.com/voice-recorder" target="_blank">🔗 SpeakPipe</a></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 24 — Quarta</span><span class="card-badge">~2h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Listening: Revisão rápida<span class="tag tag-listening">Listening</span></div><div class="task-desc">Ouça 1 episódio do BBC. Só para manter o ouvido aquecido.</div><a class="task-link" href="https://www.bbc.co.uk/learningenglish/english/features/6-minute-english" target="_blank">🔗 BBC 6 Minute English</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Writing: Revisão de estruturas<span class="tag tag-writing">Writing</span></div><div class="task-desc">Releia seus templates de email. Memorize aberturas e fechamentos.</div><a class="task-link" href="https://writeandimprove.com" target="_blank">🔗 Write & Improve</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Reading: Último quiz<span class="tag tag-reading">Reading</span></div><div class="task-desc">1 notícia + quiz. Pratique a técnica de scanning.</div><a class="task-link" href="https://www.breakingnewsenglish.com/easy-english-news.html" target="_blank">🔗 Breaking News English</a></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 25 — Quinta</span><span class="card-badge">~2h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">🎯 MOCK TEST FINAL: EF SET #3<span class="tag tag-mock">SIMULADO FINAL</span></div><div class="task-desc">Último simulado completo. Anote a nota. Deve estar 48+!</div><a class="task-link" href="https://www.efset.org" target="_blank">🔗 EF SET (simulado final)</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Análise final<span class="tag tag-reading">Review</span></div><div class="task-desc">Se deu 48+: parabéns, está pronto! Se não, foque no gap nas últimas 2 semanas.</div></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 26 — Sexta</span><span class="card-badge">~1.5h</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Listening leve: 1 episódio BBC<span class="tag tag-listening">Listening</span></div><div class="task-desc">Só para manter o ritmo. Não force.</div><a class="task-link" href="https://www.bbc.co.uk/learningenglish/english/features/6-minute-english" target="_blank">🔗 BBC 6 Minute English</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Writing leve: 1 email curto<span class="tag tag-writing">Writing</span></div><div class="task-desc">Só para não enferrujar. 5 minutos.</div><a class="task-link" href="https://writeandimprove.com" target="_blank">🔗 Write & Improve</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Revisão mental: Estratégias do teste<span class="tag tag-reading">Review</span></div><div class="task-desc">Releia as dicas: não deixe em branco, fale claro, use scanning.</div></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 27 — Sábado</span><span class="card-badge">~30min</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Descanso total<span class="tag tag-rest">Descanso</span></div><div class="task-desc">NÃO ESTUDE. Assista algo em inglês se quiser, mas sem pressão.</div></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Preparação logística<span class="tag tag-rest">Preparar</span></div><div class="task-desc">Teste o áudio do computador. Escolha local silencioso. Durma cedo.</div></div></div>
+      </div>
+      <div class="card"><div class="card-header"><span class="card-title">Dia 28 — DOMINGO = DIA D 🎉</span><span class="card-badge">~50min</span></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">🎯 EF SET OFICIAL<span class="tag tag-mock">DIA D</span></div><div class="task-desc">Faça o teste oficial. Fique calmo. Você treinou 27 dias para isso!</div><a class="task-link" href="https://www.efset.org" target="_blank">🔗 EF SET (oficial)</a></div></div>
+        <div class="task-item"><div class="task-check" onclick="toggle(this)"></div><div class="task-body"><div class="task-title">Comemore!<span class="tag tag-rest">Comemorar</span></div><div class="task-desc">Independente da nota, você se dedicou. Agora é esperar o resultado e planejar o intercâmbio!</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Feito com 💪 para o Wellington passar do João e ir pro intercâmbio!
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

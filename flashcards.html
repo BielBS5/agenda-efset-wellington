@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flashcards — EF SET</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .filter-btns { display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; }
+    .filter-btn {
+      padding: 6px 14px; border: 1px solid var(--border); background: transparent;
+      color: var(--text-tertiary); font-size: 12px; font-weight: 500; cursor: pointer;
+      border-radius: var(--radius-md); transition: all 0.15s; font-family: inherit;
+    }
+    .filter-btn:hover { border-color: var(--text-secondary); color: var(--text-secondary); }
+    .filter-btn.active { background: var(--text-primary); color: var(--bg); border-color: var(--text-primary); }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">🎯 EF SET Agenda</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="agenda.html" class="nav-link">Agenda</a>
+        <a href="flashcards.html" class="nav-link active">Flashcards</a>
+        <a href="templates.html" class="nav-link">Templates</a>
+        <a href="simulador.html" class="nav-link">Simulador</a>
+        <a href="speaking.html" class="nav-link">Speaking</a>
+        <a href="dicas.html" class="nav-link">Dicas</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="hero" style="padding:20px 16px;">
+      <h1>🗂️ Flashcards</h1>
+      <p>Clique nos cards para virar e ver a tradução. Filtre por tema!</p>
+    </div>
+
+    <div class="filter-btns">
+      <button class="filter-btn active" data-filter="all" onclick="filterCards('all')">Todos</button>
+      <button class="filter-btn" data-filter="viagem" onclick="filterCards('viagem')">Viagem</button>
+      <button class="filter-btn" data-filter="trabalho" onclick="filterCards('trabalho')">Trabalho</button>
+      <button class="filter-btn" data-filter="comida" onclick="filterCards('comida')">Comida</button>
+      <button class="filter-btn" data-filter="casa" onclick="filterCards('casa')">Casa</button>
+      <button class="filter-btn" data-filter="emocoes" onclick="filterCards('emocoes')">Emoções</button>
+      <button class="filter-btn" data-filter="tempo" onclick="filterCards('tempo')">Tempo</button>
+      <button class="filter-btn" data-filter="verbo" onclick="filterCards('verbo')">Verbos</button>
+    </div>
+
+    <div class="flashcard-grid">
+      <div class="flashcard" data-category="viagem" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Viagem</div>airport</div>
+          </div>
+          <div class="flashcard-back">aeroporto</div>
+        </div>
+      </div>
+      <div class="flashcard" data-category="viagem" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Viagem</div>boarding pass</div>
+          </div>
+          <div class="flashcard-back">cartão de embarque</div>
+        </div>
+      </div>
+      <div class="flashcard" data-category="viagem" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Viagem</div>customs</div>
+          </div>
+          <div class="flashcard-back">alfândega</div>
+        </div>
+      </div>
+      <div class="flashcard" data-category="viagem" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Viagem</div>reservation</div>
+          </div>
+          <div class="flashcard-back">reserva</div>
+        </div>
+      </div>
+      <div class="flashcard" data-category="trabalho" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Trabalho</div>deadline</div>
+          </div>
+          <div class="flashcard-back">prazo</div>
+        </div>
+      </div>
+      <div class="flashcard" data-category="trabalho" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Trabalho</div>meeting</div>
+          </div>
+          <div class="flashcard-back">reunião</div>
+        </div>
+      </div>
+      <div class="flashcard" data-category="trabalho" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Trabalho</div>colleague</div>
+          </div>
+          <div class="flashcard-back">colega</div>
+        </div>
+      </div>
+      <div class="flashcard" data-category="trabalho" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Trabalho</div>schedule</div>
+          </div>
+          <div class="flashcard-back">cronograma</div>
+        </div>
+      </div>
+      <div class="flashcard" data-category="comida" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Comida</div>delicious</div>
+          </div>
+          <div class="flashcard-back">delicioso</div>
+        </div>
+      </div>
+      <div class="flashcard" data-category="comida" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Comida</div>spicy</div>
+          </div>
+          <div class="flashcard-back">apimentado</div>
+        </div>
+      </div>
+      <div class="flashcard" data-category="comida" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Comida</div>bill / check</div>
+          </div>
+          <div class="flashcard-back">conta</div>
+        </div>
+      </div>
+      <div class="flashcard" data-category="comida" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Comida</div>waiter</div>
+          </div>
+          <div class="flashcard-back">garçom</div>
+        </div>
+      </div>
+      <div class="flashcard" data-category="casa" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Casa</div>furniture</div>
+          </div>
+          <div class="flashcard-back">móveis</div>
+        </div>
+      </div>
+      <div class="flashcard" data-category="casa" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Casa</div>neighborhood</div>
+          </div>
+          <div class="flashcard-back">bairro</div>
+        </div>
+      </div>
+      <div class="flashcard" data-category="casa" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Casa</div>landlord</div>
+          </div>
+          <div class="flashcard-back">proprietário</div>
+        </div>
+      </div>
+      <div class="flashcard" data-category="emocoes" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Emoções</div>excited</div>
+          </div>
+          <div class="flashcard-back">animado / empolgado</div>
+        </div>
+      </div>
+      <div class="flashcard" data-category="emocoes" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Emoções</div>nervous</div>
+          </div>
+          <div class="flashcard-back">nervoso</div>
+        </div>
+      </div>
+      <div class="flashcard" data-category="emocoes" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Emoções</div>confident</div>
+          </div>
+          <div class="flashcard-back">confiante</div>
+        </div>
+      </div>
+      <div class="flashcard" data-category="tempo" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Tempo</div>forecast</div>
+          </div>
+          <div class="flashcard-back">previsão</div>
+        </div>
+      </div>
+      <div class="flashcard" data-category="tempo" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Tempo</div>rainy</div>
+          </div>
+          <div class="flashcard-back">chuvoso</div>
+        </div>
+      </div>
+      <div class="flashcard" data-category="verbo" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Verbos</div>to apply</div>
+          </div>
+          <div class="flashcard-back">aplicar / candidatar-se</div>
+        </div>
+      </div>
+      <div class="flashcard" data-category="verbo" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Verbos</div>to improve</div>
+          </div>
+          <div class="flashcard-back">melhorar</div>
+        </div>
+      </div>
+      <div class="flashcard" data-category="verbo" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Verbos</div>to recommend</div>
+          </div>
+          <div class="flashcard-back">recomendar</div>
+        </div>
+      </div>
+      <div class="flashcard" data-category="verbo" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div><div class="flashcard-category">Verbos</div>to complain</div>
+          </div>
+          <div class="flashcard-back">reclamar</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Feito com 💪 para o Wellington passar do João e ir pro intercâmbio!
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
