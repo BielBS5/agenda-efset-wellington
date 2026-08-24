@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛫 Missão Intercâmbio - Wellington</title>
+    <style>
+        :root {
+            --primary: #58cc02; /* Verde Duolingo */
+            --primary-dark: #46a302;
+            --secondary: #ffc800; /* Amarelo */
+            --danger: #ff4b4b;
+            --bg: #131f24;
+            --card: #1f332e;
+            --text: #ffffff;
+            --text-muted: #8b9d8a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1f332e 0%, #2d4a3e 100%);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header h1 { font-size: 1.5rem; margin-bottom: 5px; }
+        .header .goal { color: var(--secondary); font-weight: bold; font-size: 0.9rem; }
+
+        .container { max-width: 500px; margin: 0 auto; padding: 20px; }
+
+        /* STREAK CARD */
+        .streak-card {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 24px rgba(255, 107, 53, 0.3);
+        }
+        .streak-number { font-size: 4rem; font-weight: 900; line-height: 1; }
+        .streak-label { font-size: 1rem; opacity: 0.9; margin-top: 5px; }
+        .streak-fire { font-size: 2rem; animation: pulse 1s infinite; }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* PROGRESS BAR */
+        .progress-section {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        .progress-bar {
+            background: #0a1410;
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, var(--primary) 0%, #7ed957 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 6px;
+        }
+
+        /* DAILY QUESTS */
+        .section-title {
+            font-size: 1.2rem;
+            margin: 24px 0 12px;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quest-card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+        .quest-card:hover { border-color: var(--primary); }
+        .quest-card.completed {
+            background: #1a2e26;
+            opacity: 0.6;
+        }
+        .quest-card.completed .quest-title { text-decoration: line-through; }
+
+        .quest-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .quest-content { flex: 1; }
+        .quest-title { font-weight: bold; font-size: 1rem; margin-bottom: 2px; }
+        .quest-desc { font-size: 0.85rem; color: var(--text-muted); }
+        .quest-xp {
+            background: var(--secondary);
+            color: #000;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        /* WEEKLY VIEW */
+        .week-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .week-day {
+            aspect-ratio: 1;
+            background: var(--card);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            position: relative;
+        }
+        .week-day.active { background: var(--primary); color: #000; font-weight: bold; }
+        .week-day.completed { background: var(--primary); }
+        .week-day.completed::after {
+            content: '✓';
+            position: absolute;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .week-day.today { border: 2px solid var(--secondary); }
+
+        /* BUTTONS */
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            box-shadow: 0 4px 0 var(--primary-dark);
+            transition: all 0.1s;
+            margin-top: 12px;
+        }
+        .btn-primary:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 var(--primary-dark);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 12px;
+        }
+
+        /* ACHIEVEMENTS */
+        .achievement {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .achievement.locked { opacity: 0.4; }
+        .achievement-icon { font-size: 2rem; }
+        .achievement-title { font-weight: bold; }
+        .achievement-desc { font-size: 0.85rem; color: var(--text-muted); }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 24px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        .modal-icon { font-size: 4rem; margin-bottom: 16px; }
+        .modal-title { font-size: 1.5rem; margin-bottom: 8px; color: var(--secondary); }
+        .modal-text { margin-bottom: 20px; color: var(--text-muted); }
+
+        /* TEST COUNTDOWN */
+        .test-countdown {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .countdown-number { font-size: 2.5rem; font-weight: 900; }
+        .countdown-label { font-size: 0.9rem; opacity: 0.9; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🛫 Missão Intercâmbio</h1>
+    <div class="goal">Meta: 51+ pontos no EF SET</div>
+</div>
+
+<div class="container">
+
+    <!-- STREAK -->
+    <div class="streak-card">
+        <div class="streak-fire">🔥</div>
+        <div class="streak-number" id="streakCount">0</div>
+        <div class="streak-label">dias seguidos</div>
+    </div>
+
+    <!-- PROGRESSO DO DIA -->
+    <div class="progress-section">
+        <div class="progress-header">
+            <span>Progresso de hoje</span>
+            <span id="progressText">0/5 tarefas</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+
+    <!-- CONTAGEM REGRESSIVA -->
+    <div class="test-countdown">
+        <div class="countdown-number" id="daysUntilTest">--</div>
+        <div class="countdown-label">dias até o próximo teste oficial</div>
+        <button class="btn-secondary" style="margin-top: 12px;" onclick="setTestDate()">📅 Agendar teste</button>
+    </div>
+
+    <!-- MISSÕES DIÁRIAS -->
+    <div class="section-title">🎯 Missões de Hoje</div>
+
+    <div class="quest-card" onclick="toggleQuest(this, 'reading')">
+        <div class="quest-icon" style="background: #4a90e2;">📖</div>
+        <div class="quest-content">
+            <div class="quest-title">Leitura Ativa</div>
+            <div class="quest-desc">Ler 1 artigo no News in Levels (Level 2)</div>
+        </div>
+        <div class="quest-xp">+20 XP</div>
+    </div>
+
+    <div class="quest-card" onclick="toggleQuest(this, 'listening')">
+        <div class="quest-icon" style="background: #e74c3c;">🎧</div>
+        <div class="quest-content">
+            <div class="quest-title">Listening Power</div>
+            <div class="quest-desc">Ouvir 1 episódio do BBC 6 Minute English</div>
+        </div>
+        <div class="quest-xp">+20 XP</div>
+    </div>
+
+    <div class="quest-card" onclick="toggleQuest(this, 'writing')">
+        <div class="quest-icon" style="background: #9b59b6;">✍️</div>
+        <div class="quest-content">
+            <div class="quest-title">Escrita Estratégica</div>
+            <div class="quest-desc">Escrever 1 texto de 100 palavras (use conectivos!)</div>
+        </div>
+        <div class="quest-xp">+30 XP</div>
+    </div>
+
+    <div class="quest-card" onclick="toggleQuest(this, 'speaking')">
+        <div class="quest-icon" style="background: #f39c12;">🗣️</div>
+        <div class="quest-content">
+            <div class="quest-title">Speaking Challenge</div>
+            <div class="quest-desc">Gravar 1 áudio de 1 min no celular</div>
+        </div>
+        <div class="quest-xp">+20 XP</div>
+    </div>
+
+    <div class="quest-card" onclick="toggleQuest(this, 'vocab')">
+        <div class="quest-icon" style="background: #1abc9c;">🧠</div>
+        <div class="quest-content">
+            <div class="quest-title">Vocabulário</div>
+            <div class="quest-desc">Aprender 5 palavras novas (Anki/Quizlet)</div>
+        </div>
+        <div class="quest-xp">+10 XP</div>
+    </div>
+
+    <!-- SEMANA -->
+    <div class="section-title">📅 Sua Semana</div>
+    <div class="week-grid" id="weekGrid"></div>
+
+    <!-- CONQUISTAS -->
+    <div class="section-title">🏆 Conquistas</div>
+
+    <div class="achievement" id="ach-first">
+        <div class="achievement-icon">🌟</div>
+        <div>
+            <div class="achievement-title">Primeiro Passo</div>
+            <div class="achievement-desc">Complete 1 missão</div>
+        </div>
+    </div>
+
+    <div class="achievement locked" id="ach-streak3">
+        <div class="achievement-icon">🔥</div>
+        <div>
+            <div class="achievement-title">Em Chamas</div>
+            <div class="achievement-desc">3 dias seguidos</div>
+        </div>
+    </div>
+
+    <div class="achievement locked" id="ach-streak7">
+        <div class="achievement-icon">💎</div>
+        <div>
+            <div class="achievement-title">Semana Perfeita</div>
+            <div class="achievement-desc">7 dias seguidos</div>
+        </div>
+    </div>
+
+    <div class="achievement locked" id="ach-streak30">
+        <div class="achievement-icon">🚀</div>
+        <div>
+            <div class="achievement-title">Rumo ao Intercâmbio</div>
+            <div class="achievement-desc">30 dias seguidos</div>
+        </div>
+    </div>
+
+    <!-- BOTÕES DE AÇÃO -->
+    <button class="btn-primary" onclick="openTest()">🎯 Fazer Teste Oficial Agora</button>
+    <button class="btn-secondary" onclick="resetDay()">🔄 Resetar dia (se completou tudo)</button>
+
+</div>
+
+<!-- MODAL DE CELEBRAÇÃO -->
+<div class="modal" id="celebrationModal">
+    <div class="modal-content">
+        <div class="modal-icon" id="modalIcon">🎉</div>
+        <div class="modal-title" id="modalTitle">Missão Cumprida!</div>
+        <div class="modal-text" id="modalText">Você está um passo mais perto do intercâmbio!</div>
+        <button class="btn-primary" onclick="closeModal()">Continuar</button>
+    </div>
+</div>
+
+<script>
+    // Estado do usuário
+    let state = JSON.parse(localStorage.getItem('efset_state')) || {
+        streak: 0,
+        lastActiveDate: null,
+        todayQuests: {},
+        testDate: null,
+        totalXP: 0,
+        weekHistory: []
+    };
+
+    const quests = {
+        reading: { xp: 20, label: 'Leitura' },
+        listening: { xp: 20, label: 'Listening' },
+        writing: { xp: 30, label: 'Escrita' },
+        speaking: { xp: 20, label: 'Speaking' },
+        vocab: { xp: 10, label: 'Vocabulário' }
+    };
+
+    // Verifica se é um novo dia
+    function checkNewDay() {
+        const today = new Date().toDateString();
+        if (state.lastActiveDate && state.lastActiveDate !== today) {
+            // Verifica se completou tudo ontem
+            const yesterdayCompleted = Object.keys(state.todayQuests).length === 5 &&
+                                       Object.values(state.todayQuests).every(v => v);
+            if (yesterdayCompleted) {
+                state.streak++;
+            } else {
+                state.streak = 0;
+            }
+            state.todayQuests = {};
+            state.weekHistory.push({ date: state.lastActiveDate, completed: yesterdayCompleted });
+        }
+        state.lastActiveDate = today;
+        saveState();
+    }
+
+    function saveState() {
+        localStorage.setItem('efset_state', JSON.stringify(state));
+    }
+
+    function toggleQuest(element, questId) {
+        if (state.todayQuests[questId]) {
+            // Desmarcar
+            delete state.todayQuests[questId];
+            element.classList.remove('completed');
+            state.totalXP -= quests[questId].xp;
+        } else {
+            // Marcar
+            state.todayQuests[questId] = true;
+            element.classList.add('completed');
+            state.totalXP += quests[questId].xp;
+
+            // Verifica se completou tudo
+            if (Object.keys(state.todayQuests).length === 5) {
+                showCelebration('🎉', 'Dia Completo!', 'Você completou todas as missões de hoje! Streak mantido!');
+            }
+        }
+        updateUI();
+        saveState();
+    }
+
+    function updateUI() {
+        // Streak
+        document.getElementById('streakCount').textContent = state.streak;
+
+        // Progresso
+        const completed = Object.keys(state.todayQuests).length;
+        document.getElementById('progressText').textContent = `${completed}/5 tarefas`;
+        document.getElementById('progressFill').style.width = `${(completed / 5) * 100}%`;
+
+        // Quests completadas
+        document.querySelectorAll('.quest-card').forEach(card => {
+            const questId = card.getAttribute('onclick').match(/'(\w+)'/)[1];
+            if (state.todayQuests[questId]) {
+                card.classList.add('completed');
+            } else {
+                card.classList.remove('completed');
+            }
+        });
+
+        // Semana
+        renderWeek();
+
+        // Conquistas
+        checkAchievements();
+
+        // Contagem regressiva
+        updateCountdown();
+    }
+
+    function renderWeek() {
+        const grid = document.getElementById('weekGrid');
+        grid.innerHTML = '';
+        const days = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+        const today = new Date().getDay();
+
+        for (let i = 0; i < 7; i++) {
+            const day = document.createElement('div');
+            day.className = 'week-day';
+            day.textContent = days[i];
+
+            if (i === today) day.classList.add('today');
+
+            // Verifica histórico
+            const historyEntry = state.weekHistory.find(h => {
+                const d = new Date(h.date).getDay();
+                return d === i && h.completed;
+            });
+            if (historyEntry) day.classList.add('completed');
+
+            grid.appendChild(day);
+        }
+    }
+
+    function checkAchievements() {
+        const completed = Object.keys(state.todayQuests).length;
+
+        if (completed >= 1) document.getElementById('ach-first').classList.remove('locked');
+        if (state.streak >= 3) document.getElementById('ach-streak3').classList.remove('locked');
+        if (state.streak >= 7) document.getElementById('ach-streak7').classList.remove('locked');
+        if (state.streak >= 30) document.getElementById('ach-streak30').classList.remove('locked');
+    }
+
+    function updateCountdown() {
+        if (state.testDate) {
+            const testDate = new Date(state.testDate);
+            const today = new Date();
+            const diff = Math.ceil((testDate - today) / (1000 * 60 * 60 * 24));
+            document.getElementById('daysUntilTest').textContent = diff > 0 ? diff : '🎯 HOJE!';
+        }
+    }
+
+    function setTestDate() {
+        const dateStr = prompt('Digite a data do teste (AAAA-MM-DD):');
+        if (dateStr) {
+            state.testDate = dateStr;
+            saveState();
+            updateCountdown();
+        }
+    }
+
+    function openTest() {
+        if (confirm('Pronto para fazer o teste oficial? Você será redirecionado para o EF SET.')) {
+            window.open('https://www.efset.org/pt/ef-set-50/', '_blank');
+        }
+    }
+
+    function resetDay() {
+        if (confirm('Tem certeza? Isso vai resetar suas missões de hoje.')) {
+            state.todayQuests = {};
+            saveState();
+            updateUI();
+        }
+    }
+
+    function showCelebration(icon, title, text) {
+        document.getElementById('modalIcon').textContent = icon;
+        document.getElementById('modalTitle').textContent = title;
+        document.getElementById('modalText').textContent = text;
+        document.getElementById('celebrationModal').classList.add('active');
+    }
+
+    function closeModal() {
+        document.getElementById('celebrationModal').classList.remove('active');
+    }
+
+    // Inicialização
+    checkNewDay();
+    updateUI();
+</script>
+
+</body>
+</html>
